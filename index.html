@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1e88e5">
+  <title>Messages</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <div class="app">
+    <!-- CONTACT LIST VIEW -->
+    <div id="contactList" class="contact-list-view">
+      <header class="main-header">
+        <div class="header-left">
+          <button class="menu-btn" id="menuBtn">☰</button>
+          <h1>Messages</h1>
+        </div>
+        <div class="header-right">
+          <button class="icon-btn" id="searchBtn">🔍</button>
+          <button class="icon-btn" id="moreBtn">⋮</button>
+        </div>
+      </header>
+
+      <!-- Search Bar -->
+      <div id="searchBar" class="search-bar hidden">
+        <button class="icon-btn" id="closeSearchBtn">←</button>
+        <input type="text" id="searchInput" placeholder="Search conversations...">
+      </div>
+
+      <div class="contacts-container">
+        <div id="contactsList"></div>
+        <div id="noResults" class="no-results hidden">No conversations found</div>
+      </div>
+
+      <button class="fab" id="newMessageBtn">✏️</button>
+    </div>
+
+    <!-- CHAT VIEW -->
+    <div id="chatView" class="chat-view hidden">
+      <header class="chat-header">
+        <div class="header-left">
+          <button id="backBtn" class="back-btn">←</button>
+          <div class="contact-avatar" id="chatAvatar"></div>
+          <div class="contact-header-info">
+            <div class="contact-header-name" id="chatName"></div>
+            <div class="contact-status" id="contactStatus">Tap for more info</div>
+          </div>
+        </div>
+        <div class="header-right">
+          <button class="icon-btn" id="callBtn">📞</button>
+          <button class="icon-btn" id="videoBtn">📹</button>
+          <button class="icon-btn" id="chatMoreBtn">⋮</button>
+        </div>
+      </header>
+
+      <div class="messages-container" id="messagesContainer">
+        <div class="date-divider">
+          <span id="todayDate">Today</span>
+        </div>
+        <div id="messages" class="messages"></div>
+      </div>
+
+      <div class="input-container">
+        <button class="attach-btn" id="attachBtn">📎</button>
+        <div class="input-wrapper">
+          <input id="userInput" type="text" placeholder="Message">
+          <button class="emoji-btn" id="emojiBtn">😊</button>
+        </div>
+        <button id="sendBtn" class="send-btn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- SETTINGS VIEW -->
+    <div id="settingsView" class="settings-view hidden">
+      <header class="main-header">
+        <div class="header-left">
+          <button class="back-btn" id="settingsBackBtn">←</button>
+          <h1>Settings</h1>
+        </div>
+      </header>
+
+      <div class="settings-container">
+        <div class="settings-section">
+          <div class="settings-header">Display</div>
+          
+          <div class="settings-item" id="darkModeToggle">
+            <div class="settings-item-content">
+              <div class="settings-item-icon">🌙</div>
+              <div class="settings-item-info">
+                <div class="settings-item-title">Dark Mode</div>
+                <div class="settings-item-desc">Use dark theme</div>
+              </div>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="darkModeCheckbox">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="settings-section">
+          <div class="settings-header">Notifications</div>
+          
+          <div class="settings-item" id="notifToggle">
+            <div class="settings-item-content">
+              <div class="settings-item-icon">🔔</div>
+              <div class="settings-item-info">
+                <div class="settings-item-title">Push Notifications</div>
+                <div class="settings-item-desc" id="notifStatus">Enable browser notifications</div>
+              </div>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="notifCheckbox">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="settings-section">
+          <div class="settings-header">About</div>
+          
+          <div class="settings-item-static">
+            <div class="settings-item-content">
+              <div class="settings-item-icon">ℹ️</div>
+              <div class="settings-item-info">
+                <div class="settings-item-title">Version</div>
+                <div class="settings-item-desc">1.0.0</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-item-static">
+            <div class="settings-item-content">
+              <div class="settings-item-icon">💬</div>
+              <div class="settings-item-info">
+                <div class="settings-item-title">App Name</div>
+                <div class="settings-item-desc">Mafia Messages</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Menu Drawer -->
+    <div id="menuDrawer" class="menu-drawer hidden">
+      <div class="menu-overlay" id="menuOverlay"></div>
+      <div class="menu-content">
+        <div class="menu-header">
+          <div class="menu-avatar">💬</div>
+          <div class="menu-info">
+            <div class="menu-name">Messages</div>
+            <div class="menu-email">Secure Communications</div>
+          </div>
+        </div>
+        <div class="menu-items">
+          <div class="menu-item" id="menuSettings">
+            <span class="menu-icon">⚙️</span>
+            <span>Settings</span>
+          </div>
+          <div class="menu-item" id="menuArchived">
+            <span class="menu-icon">📦</span>
+            <span>Archived</span>
+          </div>
+          <div class="menu-item" id="menuHelp">
+            <span class="menu-icon">❓</span>
+            <span>Help & Feedback</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Context Menu -->
+    <div id="contextMenu" class="context-menu hidden">
+      <div class="menu-item-small" id="menuDelete">Delete</div>
+      <div class="menu-item-small" id="menuArchive">Archive</div>
+      <div class="menu-item-small" id="menuMute">Mute</div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="toast hidden"></div>
+  </div>
+</body>
+</html>
