@@ -67,6 +67,6 @@ No frameworks. No dependencies. 100% lightweight.
 
 ---
 
-**Author:** [Your Name]  
+**Author:** JEIEL GAMBOA 
 **Version:** 1.0  
 **License:** MIT
